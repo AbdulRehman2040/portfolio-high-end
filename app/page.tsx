@@ -50,9 +50,32 @@ function DemoScreen({ label }: { label: string }) {
   );
 }
 
+// TEMPORARY test rig — verifies the header's active link + underline colour
+// re-light per chapter tint while scrolling. Replaced from Prompt 3 onward.
+const TEST_SECTIONS = [
+  { id: "work", label: "Work", tint: "#FF7A29" },
+  { id: "capabilities", label: "Capabilities", tint: "#4C7DFF" },
+  { id: "process", label: "Process", tint: "#1E9E6A" },
+  { id: "about", label: "About", tint: "#C99A6B" },
+];
+
 export default function StyleGuidePage() {
   return (
     <main>
+      {/* TEMPORARY — active-section / tint verification rig */}
+      {TEST_SECTIONS.map((s) => (
+        <section
+          key={s.id}
+          id={s.id}
+          data-section={s.id}
+          data-tint={s.tint}
+          style={{ "--tint": s.tint } as React.CSSProperties}
+          className="flex min-h-[90vh] items-center justify-center border-b border-[var(--line-dark)]"
+        >
+          <h2 className="display text-[9vw] text-bone">{s.label}</h2>
+        </section>
+      ))}
+
       {/* Colour swatches */}
       <Section>
         <MonoLabel index={1}>Palette</MonoLabel>
