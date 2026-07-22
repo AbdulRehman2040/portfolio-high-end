@@ -5,6 +5,8 @@ import { Work } from "@/components/sections/Work";
 import { Capabilities } from "@/components/sections/Capabilities";
 import { Process } from "@/components/sections/Process";
 import { About } from "@/components/sections/About";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { Contact } from "@/components/sections/Contact";
 
 export const metadata: Metadata = {
   title: "Abdul Rehman — Full-Stack Developer",
@@ -19,6 +21,8 @@ export default function Home() {
       <Capabilities />
       <Process />
       <About />
+      <Testimonials />
+      <Contact />
     </main>
   );
 }

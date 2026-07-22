@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
 import { site } from "@/lib/site";
+import { useCopyEmail } from "@/hooks/useCopyEmail";
 
 // Segment: mono, carbon on houselights; full inversion on hover AND keyboard
 // focus via the .invert-hover utility (globals.css).
@@ -20,19 +20,7 @@ function borders(i: number) {
 }
 
 export function RecruiterBar() {
-  const [copied, setCopied] = useState(false);
-  const timer = useRef<number | undefined>(undefined);
-
-  const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(site.email);
-    } catch {
-      // Clipboard unavailable — still reflect intent to the user.
-    }
-    setCopied(true);
-    window.clearTimeout(timer.current);
-    timer.current = window.setTimeout(() => setCopied(false), 2000);
-  };
+  const { copied, copy } = useCopyEmail();
 
   return (
     <div className="mt-16 grid grid-cols-2 border-y border-[var(--line-light)] md:mt-24 md:grid-cols-4">
@@ -64,7 +52,7 @@ export function RecruiterBar() {
       </a>
       <button
         type="button"
-        onClick={copyEmail}
+        onClick={copy}
         aria-label="Copy email address"
         className={`${SEG} ${borders(3)}`}
       >

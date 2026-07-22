@@ -165,6 +165,17 @@ body {
   will-change: transform;
 }
 
+/* Contact email — 2px underline draws L→R on hover AND keyboard focus. */
+.email-underline {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms var(--ease-out);
+}
+.email-link:hover .email-underline,
+.email-link:focus-visible .email-underline {
+  transform: scaleX(1);
+}
+
 /* Recruiter-bar segments — full inversion on hover AND keyboard focus. */
 .invert-hover {
   transition:

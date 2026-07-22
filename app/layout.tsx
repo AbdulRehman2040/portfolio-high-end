@@ -3,6 +3,7 @@ import { Archivo, Fragment_Mono } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
 import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 // One family, two voices. The `wdth` axis lets the display voice stretch
 // to an expanded 125% while the body voice stays at normal width.
@@ -45,6 +46,7 @@ export default function RootLayout({
         </a>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
