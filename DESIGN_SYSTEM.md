@@ -28,6 +28,7 @@ The **only** glow permitted anywhere is `.screenlight`.
 | `--color-dim`         | `#8B8579` | muted text                       |
 | `--color-houselights` | `#EDE8DD` | the ONE light section bg (About) |
 | `--color-carbon`      | `#17150F` | text on houselights              |
+| `--color-live`        | `#52D273` | status light — availability dots / "LIVE" markers ONLY, never an accent |
 
 Hairlines: `--line-dark: rgba(245,241,232,0.10)` ·
 `--line-light: rgba(23,21,15,0.12)`
@@ -48,6 +49,33 @@ Tailwind utilities map automatically: `bg-backstage`, `text-bone`,
 So a single `tint` prop re-lights selection, focus ring, hovers and glow
 together. Provisional tints live in `lib/projects.ts` (marked `PROVISIONAL`,
 to be replaced by sampling real screenshots).
+
+## Section anchor contract
+
+Every chapter section uses these exact ids (and the header depends on them):
+
+`#work` · `#capabilities` · `#process` · `#about` · `#contact`
+
+Each chapter section carries `data-section="<id>"`; project chapters also carry
+`data-tint="<hex>"`. `hooks/useActiveSection.ts` observes `[data-section]` with
+an IntersectionObserver (thin band at ~33% from top, no scroll listeners) and
+returns `{ activeId, activeTint }` (`activeTint` falls back to
+`var(--color-bone)`).
+
+## Header (`components/layout/`)
+
+Fixed, `z-50`, full width, **solid** — never backdrop-blur / glass.
+
+- Sets `--tint: activeTint` inline on itself, so the active nav underline and
+  hover states relight in the current chapter's colour.
+- Top of page: transparent, `h-20`, no border. `scrollY > 32`: solid
+  `bg-backstage`, `h-16`, 1px bottom border, transition `--dur-fast`.
+- Wordmark (type is the mark, no logo), desktop nav (`.mono-label` links,
+  active/hover underline drawn L→R in `--dur-fast`), availability chip
+  (`--color-live` dot + "Open to work"), ghost "Hire me" button.
+- `MobileMenu`: 44×44 morphing trigger, full-screen **solid** overlay,
+  body scroll lock, staggered `.display` links, Escape + focus return + focus
+  trap. Reduced motion → fades only.
 
 ## Motion tokens
 

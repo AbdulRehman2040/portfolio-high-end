@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Archivo, Fragment_Mono } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
+import { Header } from "@/components/layout/Header";
 
 // One family, two voices. The `wdth` axis lets the display voice stretch
 // to an expanded 125% while the body voice stays at normal width.
@@ -35,7 +36,14 @@ export default function RootLayout({
       lang="en"
       className={`dark ${archivo.variable} ${fragmentMono.variable}`}
     >
-      <body className="min-h-dvh bg-backstage text-bone antialiased">
+      <body id="top" className="min-h-dvh bg-backstage text-bone antialiased">
+        <a
+          href="#work"
+          className="sr-only rounded-[var(--radius-sm)] focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:bg-iron focus:px-4 focus:py-2 focus:text-bone"
+        >
+          Skip to content
+        </a>
+        <Header />
         {children}
       </body>
     </html>
