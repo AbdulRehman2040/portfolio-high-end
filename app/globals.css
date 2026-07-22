@@ -147,6 +147,24 @@ body {
     color-mix(in oklch, var(--tint) 40%, transparent);
 }
 
+/* Marquee — pure CSS translate. Track holds the item list twice; shifting
+ * -50% advances exactly one list for a seamless loop. Duration is set inline
+ * (track width / speed). Hard edges only — no mask-image fades (gradients). */
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation-name: marquee-x;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
 /* Availability status light — slow opacity pulse. Uses --color-live only. */
 @keyframes live-pulse {
   0%,
