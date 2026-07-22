@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { MonoLabel } from "@/components/ui/MonoLabel";
+import { MaskReveal } from "@/components/ui/MaskReveal";
 import { Button } from "@/components/ui/Button";
 import { SpecRow } from "@/components/capabilities/SpecRow";
 
@@ -54,17 +55,7 @@ export function Capabilities() {
         >
           <MonoLabel>Capabilities</MonoLabel>
           <h2 className="display mt-5 text-[clamp(48px,8vw,120px)] leading-[0.92] text-bone">
-            <span className="block overflow-hidden">
-              <motion.span
-                className="block"
-                initial={reduce ? { opacity: 0 } : { y: "110%" }}
-                whileInView={reduce ? { opacity: 1 } : { y: "0%" }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: reduce ? 0.25 : 0.7, ease: EASE }}
-              >
-                What I Build
-              </motion.span>
-            </span>
+            <MaskReveal reduce={reduce}>What I Build</MaskReveal>
           </h2>
           <p className="mt-5 text-[18px] text-dim">
             Four areas, one standard: it ships and it works.

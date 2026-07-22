@@ -85,6 +85,17 @@ Fixed, `z-50`, full width, **solid** — never backdrop-blur / glass.
   body scroll lock, staggered `.display` links, Escape + focus return + focus
   trap. Reduced motion → fades only.
 
+## Light sections (houselights)
+
+`<Section light>` is the ONE light section (About): `bg-houselights`,
+`text-carbon`. It also sets `--tint: var(--color-carbon)` inline, so
+selection (carbon bg, houselights text), focus rings and ghost-hover read
+correctly on the light background. Borders inside light sections use
+`--line-light` (not `--line-dark`). A light section does NOT expose a
+`data-tint`, so while it is active the header nav underline stays monochrome
+(bone) rather than trying to draw carbon on the dark header. The dark→light
+transition is a hard cut — never a gradient.
+
 ## Motion tokens
 
 | Token         | Value                            |

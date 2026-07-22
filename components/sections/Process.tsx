@@ -9,6 +9,7 @@ import {
   useSpring,
 } from "motion/react";
 import { MonoLabel } from "@/components/ui/MonoLabel";
+import { MaskReveal } from "@/components/ui/MaskReveal";
 import { Stage } from "@/components/process/Stage";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -90,17 +91,7 @@ export function Process() {
         >
           <MonoLabel>Process</MonoLabel>
           <h2 className="display mt-5 text-[clamp(40px,6.5vw,104px)] leading-[0.95] text-bone [text-wrap:balance]">
-            <span className="block overflow-hidden">
-              <motion.span
-                className="block"
-                initial={reduce ? { opacity: 0 } : { y: "110%" }}
-                whileInView={reduce ? { opacity: 1 } : { y: "0%" }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: reduce ? 0.25 : 0.7, ease: EASE }}
-              >
-                Localhost → Production
-              </motion.span>
-            </span>
+            <MaskReveal reduce={reduce}>Localhost → Production</MaskReveal>
           </h2>
           <p className="mt-5 text-[18px] text-dim">
             Every project moves through the same pipeline — and you see it at

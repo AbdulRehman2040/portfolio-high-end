@@ -10,6 +10,7 @@ import {
 } from "motion/react";
 import { Button } from "@/components/ui/Button";
 import { MonoLabel } from "@/components/ui/MonoLabel";
+import { MaskReveal } from "@/components/ui/MaskReveal";
 import { ScreenFrame } from "@/components/ScreenFrame";
 import { Placard } from "@/components/Placard";
 import { useIsMobile } from "@/hooks/useIsMobile";
@@ -44,17 +45,9 @@ function Label({ project, index, reduce }: PieceProps) {
 function Title({ project, reduce }: PieceProps) {
   return (
     <h3 className="display mt-4 text-[clamp(36px,4.5vw,72px)] leading-[0.95] text-bone [text-wrap:balance]">
-      <span className="block overflow-hidden">
-        <motion.span
-          className="block"
-          initial={reduce ? { opacity: 0 } : { y: "110%" }}
-          whileInView={reduce ? { opacity: 1 } : { y: "0%" }}
-          viewport={VIEWPORT}
-          transition={{ duration: reduce ? 0.25 : 0.7, ease: EASE }}
-        >
-          {project.title}
-        </motion.span>
-      </span>
+      <MaskReveal reduce={reduce} amount={0.35}>
+        {project.title}
+      </MaskReveal>
     </h3>
   );
 }

@@ -126,7 +126,7 @@ export function Hero() {
         </h1>
 
         {/* 3 — 12-col row */}
-        <div className="mt-12 grid grid-cols-12 items-start gap-x-10 gap-y-12">
+        <div className="mt-12 grid grid-cols-1 items-start gap-y-12 md:grid-cols-12 md:gap-x-10">
           {/* left: cols 1–5 */}
           <div className="col-span-12 md:col-span-5">
             <motion.p

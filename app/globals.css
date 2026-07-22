@@ -165,6 +165,18 @@ body {
   will-change: transform;
 }
 
+/* Recruiter-bar segments — full inversion on hover AND keyboard focus. */
+.invert-hover {
+  transition:
+    background-color 180ms var(--ease-out),
+    color 180ms var(--ease-out);
+}
+.invert-hover:hover,
+.invert-hover:focus-visible {
+  background-color: var(--color-carbon);
+  color: var(--color-houselights);
+}
+
 /* Availability status light — slow opacity pulse. Uses --color-live only. */
 @keyframes live-pulse {
   0%,
