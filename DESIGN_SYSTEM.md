@@ -50,6 +50,14 @@ So a single `tint` prop re-lights selection, focus ring, hovers and glow
 together. Provisional tints live in `lib/projects.ts` (marked `PROVISIONAL`,
 to be replaced by sampling real screenshots).
 
+`--tint` is registered as a typed `<color>` via `@property` (inherits, initial
+`#F5F1E8`), so it can **transition** like a colour. Add the `.tint-transition`
+utility (`transition: --tint 900ms var(--ease-out)`) to the element that owns
+a changing `--tint`; as it interpolates, every dependent value (screenlight
+glow, underline, selection, focus, ghost hover) re-lights together. This powers
+the hero power-on — the first colour on the site — where `--tint` ramps from
+bone to `projects[0].tint` as the flagship screenshot wakes.
+
 ## Section anchor contract
 
 Every chapter section uses these exact ids (and the header depends on them):

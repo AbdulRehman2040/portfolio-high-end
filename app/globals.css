@@ -43,6 +43,23 @@
   --tint: var(--color-bone);
 }
 
+/*
+ * Register --tint as a typed <color> so it can TRANSITION like a colour.
+ * This powers the hero power-on: as --tint interpolates, every dependent
+ * value (screenlight glow, underlines, selection, focus, ghost hover)
+ * re-lights together. Apply `.tint-transition` to the element that owns
+ * the changing --tint.
+ */
+@property --tint {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #f5f1e8;
+}
+
+.tint-transition {
+  transition: --tint 900ms var(--ease-out);
+}
+
 * {
   border-color: var(--line-dark);
 }

@@ -19,6 +19,17 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    // Flagship — opens the show. Hero consumes projects[0].
+    slug: "moveup-pro",
+    title: "MoveUp Pro",
+    category: "Property Ops Platform",
+    year: 2024,
+    stack: ["Next.js", "TypeScript", "PostgreSQL"],
+    liveUrl: "https://example.com/moveup-pro",
+    screenshot: "/projects/moveup-pro.jpg",
+    tint: "#4C7DFF", // PROVISIONAL
+  },
+  {
     slug: "bravo-roofing",
     title: "Bravo Roofing",
     category: "Marketing Site",
@@ -37,16 +48,6 @@ export const projects: Project[] = [
     liveUrl: "https://example.com/ideal-floors",
     screenshot: "/projects/ideal-floors.jpg",
     tint: "#C99A6B", // PROVISIONAL
-  },
-  {
-    slug: "moveup-pro",
-    title: "MoveUp Pro",
-    category: "SaaS Platform",
-    year: 2024,
-    stack: ["Next.js", "TypeScript", "PostgreSQL"],
-    liveUrl: "https://example.com/moveup-pro",
-    screenshot: "/projects/moveup-pro.jpg",
-    tint: "#4C7DFF", // PROVISIONAL
   },
   {
     slug: "twilio-dialer",
