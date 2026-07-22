@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+/* ============================================================= *
+ * SCREENLIGHT — design tokens
+ * "the work is the only light."
+ * Chrome is strictly monochrome (warm black + bone). Colour enters
+ * ONLY through the per-chapter --tint variable. There is no fixed accent.
+ * ============================================================= */
+
+@theme {
+  /* Monochrome palette — warm black + bone. Never navy. */
+  --color-backstage: #0e0d0c; /* main bg — warm black */
+  --color-iron: #1c1b19; /* raised surfaces, frames */
+  --color-bone: #f5f1e8; /* primary text on dark */
+  --color-dim: #8b8579; /* muted text */
+  --color-houselights: #ede8dd; /* the ONE light section bg — About */
+  --color-carbon: #17150f; /* text on houselights */
+
+  /* Hairlines */
+  --line-dark: rgba(245, 241, 232, 0.1);
+  --line-light: rgba(23, 21, 15, 0.12);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 220ms;
+  --dur-base: 550ms;
+  --dur-slow: 750ms;
+
+  /* Shape — nothing rounder anywhere */
+  --radius-sm: 2px;
+  --radius-frame: 4px;
+
+  /* Type — one family, two voices */
+  --font-sans: var(--font-archivo);
+  --font-mono: var(--font-fragment);
+}
+
+/* Tint system — monochrome by default. Any chapter overrides --tint inline. */
+:root {
+  --tint: var(--color-bone);
+}
+
+* {
+  border-color: var(--line-dark);
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Colour follows the tint — bone in monochrome context, client colour in a chapter. */
+::selection {
+  background: var(--tint);
+  color: var(--color-backstage);
+}
+
+:focus-visible {
+  outline: 2px solid var(--tint);
+  outline-offset: 3px;
+}
+
+/* Scrollbar — thin, iron track, dim thumb */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-dim) var(--color-iron);
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--color-iron);
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--color-dim);
+  border: 2px solid var(--color-iron);
+  border-radius: 0;
+}
+
+/* ============================================================= *
+ * Utility classes
+ * ============================================================= */
+
+/* Display voice — Archivo expanded (wdth 125%), heavy, uppercase, tight. */
+.display {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-stretch: 125%;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 0.92;
+}
+
+/* Mono label — eyebrows, placards, metadata. */
+.mono-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem; /* 11px */
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-dim);
+}
+@media (min-width: 768px) {
+  .mono-label {
+    font-size: 0.75rem; /* 12px */
+  }
+}
+
+/* Frame — the lit-screen treatment for screenshots. */
+.frame {
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius-frame);
+  background: var(--color-iron);
+  overflow: hidden;
+}
+
+/* Screenlight — the cast light. The ONLY glow permitted on the site. */
+.screenlight {
+  box-shadow: 0 0 120px -20px
+    color-mix(in oklch, var(--tint) 40%, transparent);
+}
+
+/* ============================================================= *
+ * Reduced motion — kill all animation/transition durations.
+ * ============================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
