@@ -26,19 +26,19 @@ export function useActiveSection(): ActiveSection {
     );
     if (sections.length === 0) return;
 
-    const visibility = new Map<string, boolean>();
+    // Keyed by element, NOT by data-section: several chapters may share the
+    // same section id ("work") yet carry different tints, so each must be
+    // tracked individually. The in-view element's tint then wins.
+    const visibility = new Map<Element, boolean>();
 
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          const id = (entry.target as HTMLElement).dataset.section;
-          if (id) visibility.set(id, entry.isIntersecting);
+          visibility.set(entry.target, entry.isIntersecting);
         }
 
-        // First section (in DOM order) currently overlapping the band wins.
-        const current = sections.find(
-          (section) => section.dataset.section && visibility.get(section.dataset.section),
-        );
+        // First element (in DOM order) currently overlapping the band wins.
+        const current = sections.find((section) => visibility.get(section));
 
         if (current) {
           setActiveId(current.dataset.section ?? null);

@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  useEffect,
-  useState,
-  useSyncExternalStore,
-  type CSSProperties,
-} from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import {
   motion,
   useMotionValue,
@@ -15,26 +10,13 @@ import {
 import { Button } from "@/components/ui/Button";
 import { ScreenFrame } from "@/components/ScreenFrame";
 import { Placard } from "@/components/Placard";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { projects } from "@/lib/projects";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const HERO = projects[0];
 const STACK = ["React", "Next.js", "TypeScript", "Node.js", "Tailwind"];
 const NAME = ["Abdul", "Rehman"];
-
-// Mobile (<768px) shortens the timeline ×0.8. Subscription avoids
-// setState-in-effect and stays hydration-safe (server snapshot = desktop).
-function useIsMobile() {
-  return useSyncExternalStore(
-    (cb) => {
-      const mq = window.matchMedia("(max-width: 767px)");
-      mq.addEventListener("change", cb);
-      return () => mq.removeEventListener("change", cb);
-    },
-    () => window.matchMedia("(max-width: 767px)").matches,
-    () => false,
-  );
-}
 
 export function Hero() {
   const reduce = useReducedMotion();

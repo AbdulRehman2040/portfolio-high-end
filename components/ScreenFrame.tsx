@@ -11,6 +11,8 @@ type ScreenFrameProps = {
   priority?: boolean;
   sizes?: string;
   className?: string;
+  /** When true, the image zooms 1.015 while an ancestor `group/media` is hovered. */
+  hoverZoom?: boolean;
 };
 
 /**
@@ -27,8 +29,12 @@ export function ScreenFrame({
   priority = false,
   sizes = "(min-width: 768px) 58vw, 100vw",
   className = "",
+  hoverZoom = false,
 }: ScreenFrameProps) {
   const [failed, setFailed] = useState(false);
+  const zoom = hoverZoom
+    ? "transition-transform duration-[250ms] ease-[var(--ease-out)] group-hover/media:scale-[1.015]"
+    : "";
 
   return (
     <div
@@ -46,7 +52,7 @@ export function ScreenFrame({
           sizes={sizes}
           priority={priority}
           onError={() => setFailed(true)}
-          className="object-cover"
+          className={`object-cover ${zoom}`}
         />
       )}
     </div>
